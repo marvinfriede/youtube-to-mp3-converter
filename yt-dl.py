@@ -1,4 +1,4 @@
-# /usr/bin/env python3
+# /usr/bin/env python3.8
 
 # SIMPLE YOUTUBE MP3 DOWNLOADER USING PYTUBE
 #
@@ -10,6 +10,7 @@ import os
 import sys
 import re
 from pytube import YouTube
+from pytube.exceptions import RegexMatchError
 
 
 destination_path = "/home/marvin/Musik"
@@ -23,11 +24,10 @@ def doDownload(url):
     audio = yt.streams.get_audio_only()
     # printInfo(yt)
 
-    title = cleanTitle(yt)
-
     print("Downloading...")
 
     # download the audio and temporarily save in 'curr'
+    title = cleanTitle(yt)
     curr = audio.download(filename=title)
 
     # move file to destination path
@@ -40,6 +40,9 @@ def doDownload(url):
   # handle some exceptions
   except FileNotFoundError as e:
     print("FileNotFoundError: {}".format(e))
+    sys.exit()
+  except RegexMatchError as e:
+    print(f"'{url}' is not a valid url. Exiting...")
     sys.exit()
   except Exception as e:
     print("Error: {}".format(e))
@@ -72,7 +75,8 @@ def main():
   f = open(file_path, "r")
   for line in f.readlines():
     if not line.startswith("#") and not line.startswith("!"):
-      doDownload(line)
+      url = line.rstrip()
+      doDownload(url)
   f.close()
 
   print("Exiting...")
