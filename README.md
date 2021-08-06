@@ -7,7 +7,7 @@ This is my personal implementation of a YouTube-to-MP3 converter using **[pytube
 ### Installing **[pytube](https://github.com/pytube/pytube)** ###
 Install directly from source to get newest version. Recommended as new bugs appear quite frequent in my experience. 
 ```bash
-python -m pip install git+https://github.com/pytube/pytube
+$ python -m pip install git+https://github.com/pytube/pytube
 ```
 
 &nbsp;
@@ -15,6 +15,7 @@ python -m pip install git+https://github.com/pytube/pytube
 ### Usage ###
 Put urls linewise in "urls.txt" and simply run the script.
 ```bash
-python yt-dl.py
+$ python converter.py
+$ ./converter.py
 ```
 Comments are allowed in "urls.txt". They must start with "#" or "!".
