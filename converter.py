@@ -41,6 +41,7 @@ def cleanDestinationPath(path):
     path = path.replace("~", os.path.expanduser("~"))
   return path
 
+
 def cleanTitle(yt):
   title = yt.title.replace("'", "")  # remove apostroph (breaks renaming)
   title = re.sub(r"[\(\[].*?[\)\]]", "", title)  # remove (...) and [...]
@@ -68,7 +69,7 @@ def main():
 
   f = open(file_path, "r")
   for line in f.readlines():
-    if not line.startswith("#") and not line.startswith("!"):
+    if line.strip() and not line.startswith("#") and not line.startswith("!"):
       
       # download
       try:
