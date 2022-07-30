@@ -1,3 +1,4 @@
 .*
 !/.gitignore
+!/.pre-commit-config.yaml
 urls.txt
